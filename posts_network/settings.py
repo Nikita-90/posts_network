@@ -25,7 +25,7 @@ SECRET_KEY = 'p0oouj(0!#n1#tqlt-1o86$i*s%ufp8yx*eo+e@bffszkoa$cc'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'serene-journey-68618.herokuapp.com']
 
 AUTH_USER_MODEL = 'common.CustomUser'
 
