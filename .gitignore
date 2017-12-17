@@ -10,3 +10,4 @@ dump.rdb
 *.pyc
 
 local_settings.py
+staticfiles
