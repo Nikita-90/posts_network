@@ -1,6 +1,6 @@
 __pycache__/
 .idea/
-/static/
+#/static/
 log/
 media/
 
@@ -10,3 +10,4 @@ dump.rdb
 *.pyc
 
 local_settings.py
+staticfiles
