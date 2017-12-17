@@ -1,0 +1,26 @@
+{% extends 'posts/main.html' %}
+{% block title %}Home Page{% endblock %}
+
+{% block body %}
+<div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+          {% for advert in adverts %}
+              <div class="blog-post">
+
+              </div><!-- /.blog-post -->
+          {% endfor %}
+
+          <ul class="pager">
+            <li><a href="#?{{ request.GET.urlencode }}">Назад</a></li>
+            <li><a href="#?{{ request.GET.urlencode }}">Далее</a></li>
+          </ul>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+
+        </div><!-- /.blog-sidebar -->
+</div><!-- /.row -->
+{% endblock %}

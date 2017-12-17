@@ -1,0 +1,60 @@
+{% extends 'posts/main.html' %}
+{% block title %}Main Page{% endblock %}
+
+{% block body %}
+<div class="row">
+
+        <div class="col-sm-8 blog-main">
+
+            {% for post in posts %}
+              <div class="blog-post">
+                <a href="{% url 'posts:post_detail' post.id 0 %}"><h2 class="blog-post-title">{{ post.title }}</h2></a>
+                  <p class="blog-post-meta">{{ post.user.first_name }} {{ post.user.last_name }}<br>
+                  {{ post.create_at }} {{ post.user.email }}<br>
+                  {{ post.user.country }} {{ post.user.city }}</p>
+                  <p>{{ post.body }}</p>
+                  {% if post.image %}
+                    <p><img src="{{ post.image.url }}"></p>
+                  {% endif %}
+                <form method="POST" action="{% url 'posts:do_like' %}">{% csrf_token %}
+                    <input type="hidden" name="like" value="{{ post.id }}">
+                    <p class="like" class="blog-post-meta"><input type="submit" value="like">
+                    {{ post.like_post__count }}</p>
+                </form>
+              </div><!-- /.blog-post -->
+            {% endfor %}
+
+
+          <ul class="pager">
+            <li><a href="{% url 'posts:main_page' page_prev %}?{{ request.GET.urlencode }}">Previous</a></li>
+            <li><a href="{% url 'posts:main_page' page_next %}?{{ request.GET.urlencode }}">Next</a></li>
+          </ul>
+
+        </div><!-- /.blog-main -->
+
+        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+            <form method="GET" action="{% url 'posts:main_page' 0 %}">
+                <input type="hidden" name="route" value="{{ request.GET.urlencode }}">
+                <p><input type="text" size="30" name="text"></p> <p><input type="submit" value="Search"></p>
+            </form>
+            <hr>
+            <div class="btn-group status-filter">
+              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">Country filter<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    {% for country in countries %}
+                        <li><a href="{% url 'posts:main_page' 0 %}?{{ request.GET.urlencode }}&country={{ country }}">{{ country }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <hr>
+            <div class="btn-group status-filter">
+              <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown">City filter<span class="caret"></span></button>
+                <ul class="dropdown-menu" role="menu">
+                    {% for city in cities %}
+                        <li><a href="{% url 'posts:main_page' 0 %}?{{ request.GET.urlencode }}&city={{ city }}">{{ city }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div><!-- /.blog-sidebar -->
+</div><!-- /.row -->
+{% endblock %}

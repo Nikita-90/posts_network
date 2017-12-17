@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://bootstrap-3.ru/examples/cover/# -->
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    {%block pre_head%}{%endblock%}
+    <link rel="stylesheet" href="{% static 'posts/css/bootstrap.css' %}">
+    <link href="{% static 'posts/css/blog.css' %}" rel="stylesheet">
+    <script type="text/javascript" src="{% static 'posts/js/jquery.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'posts/js/bootstrap.min.js' %}" ></script>
+    <script type="text/javascript" src="{% static 'posts/js/docs.min.js' %}" ></script>
+</head>
+
+  <body><div class="blog-masthead">
+      <div class="container">
+        <nav class="sort blog-nav">
+          <a class="blog-nav-item" href="{% url 'posts:main_page' 0 %}">Main Page</a>
+          <a class="blog-nav-item" href="{% url 'posts:create_post' %}">Create Post</a>
+            <div class="navbar-right blog-nav-item">{{ user.email }}</div>
+            <div class="navbar-right blog-nav-item"><a href="{% url 'common:logout_view' %}">Log-Out</a></div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container">
+        <div class="blog-header">
+
+      </div>
+        {% block body %}{% endblock %}
+
+
+    </div><!-- /.container -->
+
+    <div class="blog-footer">
+      <p>Разработал boyko.nikita@gmail.com</p>
+        <p>Благодарность <a href="http://bootstrap-3.ru">http://bootstrap-3.ru</a></p>
+      <p>Blog template built for <a href="http://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+    </div>
+
+<script>
+    $(document).ready(function () {
+        $('.sort a').each(function () { //определяем общий класс меню
+            var location = window.location.href.split('?')[0];
+            var link = this.href;
+            if (location == link) {
+                $(this).addClass('active'); //добавляем класс активной вкладке
+            }
+        });
+    });
+</script>
+</body>
+</html>

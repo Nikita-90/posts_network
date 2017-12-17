@@ -1,0 +1,9 @@
+{% extends 'posts/main.html' %}
+{% block title %}Create Post{% endblock %}
+
+{% block body %}
+<form method="POST" class="post-form form-horizontal" role="form" enctype="multipart/form-data">{% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" class="save btn btn-default" value="Save">
+</form>
+{% endblock %}
