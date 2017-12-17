@@ -13,6 +13,8 @@ from .models import CustomUser
 def registration(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
+        form.data._mutable = True
+        form.data['is_active'] = False
         if form.is_valid():
             form.save(request=request)
             return HttpResponse('Check your email')

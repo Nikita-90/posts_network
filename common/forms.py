@@ -52,7 +52,7 @@ class UserCreationForm(forms.ModelForm, BaseUserForm):
 
     class Meta:
         model = CustomUser
-        fields = ('email', 'first_name', 'last_name', 'country', 'city', 'birthday')
+        fields = ('email', 'first_name', 'last_name', 'country', 'city', 'birthday', 'is_active')
 
     def __init__(self, *args, **kwargs):
         super(UserCreationForm, self).__init__(*args, **kwargs)
@@ -60,6 +60,7 @@ class UserCreationForm(forms.ModelForm, BaseUserForm):
         self.fields['last_name'].required = True
         self.fields['country'].required = True
         self.fields['city'].required = True
+        self.fields['is_active'].widget = self.fields['is_active'].hidden_widget()
 
     def clean_password2(self):
         password1 = self.cleaned_data.get("password1")

@@ -40,14 +40,6 @@ class CustomUser(AbstractUser):
     birthday = models.DateField(blank=True, null=True)
     country = models.CharField(max_length=16, blank=True)
     city = models.CharField(max_length=16, blank=True)
-    is_active = models.BooleanField(
-        _('active'),
-        default=False,
-        help_text=_(
-            'Designates whether this user should be treated as active. '
-            'Unselect this instead of deleting accounts.'
-        ),
-    )
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
