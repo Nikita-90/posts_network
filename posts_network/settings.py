@@ -83,7 +83,7 @@ DATABASES = {
         'USER': 'posts_network',
         'PASSWORD': 'posts_network_pass',
         'HOST': 'localhost',
-        'POST': '5432',
+        'POST': '',
     }
 }
 
