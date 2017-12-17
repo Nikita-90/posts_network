@@ -54,5 +54,5 @@ def complete_email(request, code=None):
     if user is not None and default_token_generator.check_token(user, token):
         user.is_active = True
         user.save()
-        return redirect('posts:home_page')
+        return redirect('posts:main_page')
     raise Http404()
